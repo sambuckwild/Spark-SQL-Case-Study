@@ -1,5 +1,5 @@
 # Politics Makes Strange Bedfellows
-In 2017, Emanuel Macron and Marie Le Penn were the final two candidates in the French Presidential Election.  The two candidates had drastically different approaches to governing, and as such, it was a major topic of discussion on Twitter.
+In 2017, Emmanuel Macron and Marine Le Pen were the final two candidates in the French Presidential Election.  The two candidates had drastically different approaches to governing, and as such, it was a major topic of discussion on Twitter.
 
 ## The Data
 <a href="https://s3.us-east-2.amazonaws.com/jgartner-test-data/twitter/zippedData.zip">The data</a> you are provided a line delimited json file (746 MB) of tweets from France during that time period.  Your task is to leverage your understanding of Spark, visualization, and feature engineering to explore the dataset and provide answers to some basic questions.  
