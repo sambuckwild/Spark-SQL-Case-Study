@@ -28,8 +28,12 @@ spark = ps.sql.SparkSession.builder \
             .appName("df case study") \
             .getOrCreate()
 
-tweets_df = spark.read.json('./data/french_tweets.json')
+tweets_df = spark.read.json('./data/french_tweets.json').sample(False, 0.2)
 ```
+
+### Big Data
+Spark is designed for Big Data, which usually means a cluster. For this case study, we'll be working in a local docker container, which probably isn't large enough for really big data, so we'll use `.sample(False, 0.20)` to select a random 20% subset (without replacement) of the tweets. Once you develop your approach with this subset of data, you can move to a cluster and remove the sampling to work on all the data.
+
 
 ### Messy Data
 This will be the most challenging dataset you've had to work with up to this point.  The data is somewhat large, and tweets are a complicated and messy source of information. Your first steps should be to understand which fields you'll be leveraging.  Once you've read in the data, start by doing a ```take(1)``` to get a feel for what a tweet JSON string looks like.
