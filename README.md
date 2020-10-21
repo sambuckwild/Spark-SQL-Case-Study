@@ -5,11 +5,15 @@
     - [The Dataset](#the-dataset)
     - [An Example Data.](#an-example-data)
   - [Your Tasks](#your-tasks)
-  - [Hints](#hints)
-    - [1. Non-UTF Characters](#1-non-utf-characters)
-    - [2. Messy Data](#2-messy-data)
+    - [A Suggested Workflow](#a-suggested-workflow)
+    - [Expected Final Result](#expected-final-result)
+  - [Hints and Suggestions](#hints-and-suggestions)
+    - [1. Filtering Non-UTF Characters](#1-filtering-non-utf-characters)
+    - [2. Working with Messy Data](#2-working-with-messy-data)
 
 This is a comprehensive case study. You may want to review what you have learned so far and come up with something unique and eye-opening! **Your task is to leverage your understanding of Spark, visualization, feature engineering and relevant statistics knowledge to explore the dataset and answer the question you defined.**
+
+<b>You are going to see a lot of error messages and see how things derail from your plan. Being able to adjust based on error messages is an important skill, consider this a chance to practice!</b>
 
 ## Introduction
 In 2017, Emmanuel Macron and Marine Le Pen were the final two candidates in the French Presidential Election.  The two candidates had drastically different approaches to governing, and as such, the election was a major topic of discussion on Twitter. You are going to use a dataset of **216,912** tweets to study it.
@@ -161,7 +165,16 @@ Below is a dictionary created from the second line of the jsonl file. You may lo
 
 ## Your Tasks
 
-You and your team will have the task of reading in, cleaning, and exploring this dataset. Your job is to gain insight into what is happening during the time period.  Your task for today is to produce the following:
+You and your team will have the task of reading in, cleaning, and exploring this dataset. Your job is to gain insight into what is happening during the time period.
+
+### A Suggested Workflow
+
+
+
+
+### Expected Final Result
+
+Your final result should contain the following two parts.
 
 1. A python script containing helper functions.
 You should be working toward transforming this large cumbersome dataset into something that is regular and easily digestible.  You need to find inconsistencies in the data, and try to think about how you would clean them.  You can do cleaning in data as they are RDDs, DataFrames, or ideally both, but the processes should be calling function that are reusable.
@@ -170,11 +183,16 @@ You should be working toward transforming this large cumbersome dataset into som
 Later this afternoon you'll stop work and get together as a class to present your findings.  You can either choose to use slides or jupyter notebooks.  The latter might be nice, because you may want to highlight bits of code.
 
 
-## Hints
-### 1. Non-UTF Characters
-We suggest reading in the data into spark RDDs, not directly into Dataframes.  You can do so using the ```textFile``` command from the ```SparkContext```, and then getting python dictionaries using the ```json``` class.  If you do a ```take(1)```, it should work just fine.  If, however, you try to do a count, you'll end up throwing an error.  This happens because the ```json``` class fails when you encounter the non-utf8 characters in the dataset.  To get around this, you should wrap the json decoding in a ```try - except``` block, and return ```None``` if an exception is hit.  You can then filter out none.
+## Hints and Suggestions
+### 1. Filtering Non-UTF Characters
 
-### 2. Messy Data
-This will be the most challenging dataset you've had to work with up to this point.  The data is somewhat large, and tweets are a complicated and messy source of information. Your first steps should be to understand which fields you'll be leveraging.  Once you've read in the data, start by doing a ```take(1)``` to get a feel for what a tweet JSON string looks like.
+1. We suggest reading in the data into spark RDDs, not directly into Dataframes.  You can do so using the ```textFile``` command from the ```SparkContext```, and then getting python dictionaries using the ```json``` class.  If you do a ```take(1)```, it should work just fine.  If, however, you try to do a count, you'll end up throwing an error.  This happens because the ```json``` class fails when you encounter the non-utf8 characters in the dataset.  To get around this, you should wrap the json decoding in a ```try - except``` block, and return ```None``` if an exception is hit.  You can then filter out none.
+2. You can also try to preprocess the text file before loading into RDDS. See this StackOverflow [answer](https://stackoverflow.com/questions/26541968/delete-every-non-utf-8-symbols-from-string) and give it a try.
 
-Also note that data is messy so you'll need to do a lot of checks and filter out inconsistent data.  <b>Being able to adjust based on error messages is an important skill, consider this a chance to practice!</b>
+
+
+### 2. Working with Messy Data
+
+This will be the most challenging dataset you've had to work with up to this point because it is **REAL**.  The data is somewhat large, and tweets are a complicated and messy source of information. Your first steps should be to understand which fields you'll be leveraging.  Once you've read in the data, start by doing a ```take(1)``` to get a feel for what a tweet JSON string looks like.
+
+Also note that data is messy so you'll need to do a lot of checks and filter out inconsistent data.
