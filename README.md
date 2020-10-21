@@ -26,7 +26,7 @@ with open('path/to/file.jsonl', 'r') as json_file:
 ```
 ### An Example Data.
 
-Below is a dictionary created from the second line of the jsonl file. You may look up the
+Below is a dictionary created from the second line of the jsonl file. You may look up the meaning of each field from official Twitter [doc](https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/overview/tweet-object). Some of them may change in the past years but shouldn't be much.
 
 ```json
 {
