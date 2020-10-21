@@ -1,11 +1,25 @@
-# Politics Makes Strange Bedfellows
-In 2017, Emmanuel Macron and Marine Le Pen were the final two candidates in the French Presidential Election.  The two candidates had drastically different approaches to governing, and as such, the election was a major topic of discussion on Twitter.
+# Spark Case Study: Politics Makes Strange Bedfellows
 
-## The Data
-<a href="https://s3.us-east-2.amazonaws.com/jgartner-test-data/twitter/zippedData.zip">The data</a> you are provided a line delimited json file (746 MB) of tweets from France during that time period.  Your task is to leverage your understanding of Spark, visualization, and feature engineering to explore the dataset and provide answers to some basic questions.  
+- [Spark Case Study: Politics Makes Strange Bedfellows](#spark-case-study-politics-makes-strange-bedfellows)
+  - [Introduction](#introduction)
+    - [The Data](#the-data)
+    - [Your Tasks](#your-tasks)
+  - [Hints](#hints)
+    - [1. Non-UTF Characters](#1-non-utf-characters)
+    - [2. Messy Data](#2-messy-data)
 
-# Your Task
-You and your team will have the task of reading in, cleaning, and exploring this dataset.  Your job is to gain insight into what is happening during the time period.  Your task for today is to produce the following:
+
+## Introduction
+In 2017, Emmanuel Macron and Marine Le Pen were the final two candidates in the French Presidential Election.  The two candidates had drastically different approaches to governing, and as such, the election was a major topic of discussion on Twitter. You are going to use a dataset of **216,912** tweets to study it.
+
+### The Data
+<a href="https://s3.us-east-2.amazonaws.com/jgartner-test-data/twitter/zippedData.zip">The data</a> you are provided a line delimited json file (746 MB) of tweets from France during that time period.
+
+Your task is to leverage your understanding of Spark, visualization, and feature engineering to explore the dataset and provide answers to some basic questions.
+
+### Your Tasks
+
+You and your team will have the task of reading in, cleaning, and exploring this dataset. Your job is to gain insight into what is happening during the time period.  Your task for today is to produce the following:
 
 1. A python script containing helper functions.
 You should be working toward transforming this large cumbersome dataset into something that is regular and easily digestible.  You need to find inconsistencies in the data, and try to think about how you would clean them.  You can do cleaning in data as they are RDDs, DataFrames, or ideally both, but the processes should be calling function that are reusable.
