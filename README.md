@@ -3,13 +3,14 @@
 - [Spark Case Study: Politics Makes Strange Bedfellows](#spark-case-study-politics-makes-strange-bedfellows)
   - [Introduction](#introduction)
     - [The Dataset](#the-dataset)
-    - [An Example Data.](#an-example-data)
+    - [An Example Tweet Json.](#an-example-tweet-json)
   - [Your Tasks](#your-tasks)
     - [A Suggested Workflow and Time Management](#a-suggested-workflow-and-time-management)
     - [Expected Final Result](#expected-final-result)
   - [Hints and Suggestions](#hints-and-suggestions)
     - [1. Filtering Non-UTF Characters](#1-filtering-non-utf-characters)
-    - [2. Working with Messy Data](#2-working-with-messy-data)
+    - [2. Tips on Working with Messy Data](#2-tips-on-working-with-messy-data)
+    - [3. Be a Resilient Debugger and Read Error Message Carefully.](#3-be-a-resilient-debugger-and-read-error-message-carefully)
 
 This is a comprehensive case study. You may want to review what you have learned so far and come up with something unique and eye-opening! **Your task is to leverage your understanding of Spark, visualization, feature engineering and relevant statistics knowledge to explore the dataset and answer the question you defined.**
 
@@ -28,7 +29,7 @@ import json
 with open('path/to/file.jsonl', 'r') as json_file:
     json_list = list(json_file)
 ```
-### An Example Data.
+### An Example Tweet Json.
 
 Below is a dictionary created from the second line of the jsonl file. You may look up the meaning of each field from official Twitter [doc](https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/overview/tweet-object). Some of them may change in the past years but shouldn't be much.
 
@@ -185,17 +186,20 @@ Your final result should contain the following two parts.
    2. You may want to save some temporary files if certain processing steps take long time.
 
 2. A presentation about your insights.
-Later this afternoon you'll stop work and get together as a class to present your findings.  You can either choose to use slides/readme.md or jupyter notebooks. The latter might be nice, because you may want to highlight bits of code.
+   1. Later this afternoon you'll stop work and get together as a class to present your findings.  You can either choose to use slides/readme.md or jupyter notebooks. The latter might be nice, because you may want to highlight bits of code.
 
 
 ## Hints and Suggestions
+
 ### 1. Filtering Non-UTF Characters
 
 1. We suggest reading in the data into spark RDDs, not directly into Dataframes.  You can do so using the ```textFile``` command from the ```SparkContext```, and then getting python dictionaries using the ```json``` class.  If you do a ```take(1)```, it should work just fine.  If, however, you try to do a count, you'll end up throwing an error.  This happens because the ```json``` class fails when you encounter the non-utf8 characters in the dataset.  To get around this, you should wrap the json decoding in a ```try - except``` block, and return ```None``` if an exception is hit.  You can then filter out none.
 2. You can also try to preprocess the text file before loading into RDDS. See this StackOverflow [answer](https://stackoverflow.com/questions/26541968/delete-every-non-utf-8-symbols-from-string) and give it a try.
 
-### 2. Working with Messy Data
+### 2. Tips on Working with Messy Data
 
-This will be the most challenging dataset you've had to work with up to this point because it is **REAL**.  The data is somewhat large, and tweets are a complicated and messy source of information. Your first steps should be to understand which fields you'll be leveraging.  Once you've read in the data, start by doing a ```take(1)``` to get a feel for what a tweet JSON string looks like.
+1. This will be the most challenging dataset you've had to work with up to this point because it is **REAL**.
 
-Also note that data is messy so you'll need to do a lot of checks and filter out inconsistent data.
+2. The data is somewhat large, and tweets are a complicated and messy source of information. Your first steps should be to understand which fields you'll be leveraging.  Once you've read in the data, start by doing a ```take(1)``` to get a feel for what a tweet JSON string looks like.
+
+### 3. Be a Resilient Debugger and Read Error Message Carefully.
