@@ -20,7 +20,7 @@ This is a comprehensive case study. You may want to review what you have learned
 In 2017, Emmanuel Macron and Marine Le Pen were the final two candidates in the French Presidential Election.  The two candidates had drastically different approaches to governing, and as such, the election was a major topic of discussion on Twitter. You are going to use a dataset of **216,912** tweets to study it.
 
 ### The Dataset
-<a href="https://s3.us-east-2.amazonaws.com/jgartner-test-data/twitter/zippedData.zip">The data</a> you are provided a line delimited json file (746 MB) of tweets from France during that time period.
+<a href="https://s3.us-east-2.amazonaws.com/jgartner-test-data/twitter/zippedData.zip">The data</a> you are provided is a line delimited json file (746 MB) of tweets from France during that time period.
 > Hint: Such a line delimited json file is also called a [`jsonl`](http://jsonlines.org/) file, which means each line of it is a string which can be converted into a json object. For example, the following code snippet demonstrates how you can read such a jsonl file into a list of json objects.
 
 ```python
@@ -175,7 +175,7 @@ You and your team will have the task of reading in, cleaning, and exploring this
 2. Propose a question or several questions that may be answered based on your observation of the dataset. ( 0.5 - 1 hr)
 3.
    1. Use Spark, Matplotlib, Pandas to carry out your implementation. (rest of the day)
-   2. Meanwhile writing your presentation or docs.
+   2. Meanwhile write your presentation or docs.
 
 ### Expected Final Result
 
