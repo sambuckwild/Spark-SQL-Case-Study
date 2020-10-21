@@ -5,7 +5,7 @@
     - [The Dataset](#the-dataset)
     - [An Example Data.](#an-example-data)
   - [Your Tasks](#your-tasks)
-    - [A Suggested Workflow](#a-suggested-workflow)
+    - [A Suggested Workflow and Time Management](#a-suggested-workflow-and-time-management)
     - [Expected Final Result](#expected-final-result)
   - [Hints and Suggestions](#hints-and-suggestions)
     - [1. Filtering Non-UTF Characters](#1-filtering-non-utf-characters)
@@ -161,26 +161,31 @@ Below is a dictionary created from the second line of the jsonl file. You may lo
 }
 
 ```
-
+**Remember, you don't need every field! Don't spend time on writing a json parser to parse every field!**
 
 ## Your Tasks
 
 You and your team will have the task of reading in, cleaning, and exploring this dataset. Your job is to gain insight into what is happening during the time period.
 
-### A Suggested Workflow
+### A Suggested Workflow and Time Management
 
-
-
+0. **Read this doc carefully.**
+1. You may want to use simple tools like plain Python code to explore the dataset. For example, you can select a subset of the jsonl file and load into pandas DataFrame (convert json to pandas? you may want to write some function to help you with that.), do some plotting, etc. (1 - 2 hrs)
+2. Propose a question or several questions that may be answered based on your observation of the dataset. ( 0.5 - 1 hr)
+3.
+   1. Use Spark, Matplotlib, Pandas to carry out your implementation. (rest of the day)
+   2. Meanwhile writing your presentation or docs.
 
 ### Expected Final Result
 
 Your final result should contain the following two parts.
 
 1. A python script containing helper functions.
-You should be working toward transforming this large cumbersome dataset into something that is regular and easily digestible.  You need to find inconsistencies in the data, and try to think about how you would clean them.  You can do cleaning in data as they are RDDs, DataFrames, or ideally both, but the processes should be calling function that are reusable.
+   1. You should be working toward transforming this large cumbersome dataset into something that is regular and easily digestible.  You need to find inconsistencies in the data, and try to think about how you would clean them.  You can do cleaning in data as they are RDDs, DataFrames, or ideally both, but the processes should be calling function that are reusable.
+   2. You may want to save some temporary files if certain processing steps take long time.
 
-2. A presentation about your choices.
-Later this afternoon you'll stop work and get together as a class to present your findings.  You can either choose to use slides or jupyter notebooks.  The latter might be nice, because you may want to highlight bits of code.
+2. A presentation about your insights.
+Later this afternoon you'll stop work and get together as a class to present your findings.  You can either choose to use slides/readme.md or jupyter notebooks. The latter might be nice, because you may want to highlight bits of code.
 
 
 ## Hints and Suggestions
@@ -188,8 +193,6 @@ Later this afternoon you'll stop work and get together as a class to present you
 
 1. We suggest reading in the data into spark RDDs, not directly into Dataframes.  You can do so using the ```textFile``` command from the ```SparkContext```, and then getting python dictionaries using the ```json``` class.  If you do a ```take(1)```, it should work just fine.  If, however, you try to do a count, you'll end up throwing an error.  This happens because the ```json``` class fails when you encounter the non-utf8 characters in the dataset.  To get around this, you should wrap the json decoding in a ```try - except``` block, and return ```None``` if an exception is hit.  You can then filter out none.
 2. You can also try to preprocess the text file before loading into RDDS. See this StackOverflow [answer](https://stackoverflow.com/questions/26541968/delete-every-non-utf-8-symbols-from-string) and give it a try.
-
-
 
 ### 2. Working with Messy Data
 
