@@ -193,7 +193,7 @@ Your final result should contain the following two parts.
 
 ### 1. Filtering Non-UTF Characters
 
-1. We suggest reading in the data into spark RDDs, not directly into Dataframes.  You can do so using the ```textFile``` command from the ```SparkContext```, and then getting python dictionaries using the ```json``` class.  If you do a ```take(1)```, it should work just fine.  If, however, you try to do a count, you'll end up throwing an error.  This happens because the ```json``` class fails when you encounter the non-utf8 characters in the dataset.  To get around this, you should wrap the json decoding in a ```try - except``` block, and return ```None``` if an exception is hit.  You can then filter out none.
+1. We suggest reading in the data into spark RDDs before converting to a DataFrame, not directly into Dataframe.  You can do so using the ```textFile``` command from the ```SparkContext```, and then getting python dictionaries using the ```json``` class.  If you do a ```take(1)```, it should work just fine.  If, however, you try to do a count, you'll end up throwing an error.  This happens because the ```json``` class fails when you encounter the non-utf8 characters in the dataset.  To get around this, you should wrap the json decoding in a ```try - except``` block, and return ```None``` if an exception is hit.  You can then filter out none.
 2. You can also try to preprocess the text file before loading into RDDS. See this StackOverflow [answer](https://stackoverflow.com/questions/26541968/delete-every-non-utf-8-symbols-from-string) and give it a try.
 
 ### 2. Tips on Working with Messy Data
