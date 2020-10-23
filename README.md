@@ -20,7 +20,7 @@ This is a comprehensive case study. You may want to review what you have learned
 In 2017, Emmanuel Macron and Marine Le Pen were the final two candidates in the French Presidential Election.  The two candidates had drastically different approaches to governing, and as such, the election was a major topic of discussion on Twitter. You are going to use a dataset of **216,912** tweets to study it.
 
 ### The Dataset
-<a href="https://s3.us-east-2.amazonaws.com/jgartner-test-data/twitter/zippedData.zip">The data</a> you are provided a line delimited json file (746 MB) of tweets from France during that time period.
+<a href="https://s3.us-east-2.amazonaws.com/jgartner-test-data/twitter/zippedData.zip">The data</a> you are provided is a line delimited json file (746 MB) of tweets from France during that time period.
 > Hint: Such a line delimited json file is also called a [`jsonl`](http://jsonlines.org/) file, which means each line of it is a string which can be converted into a json object. For example, the following code snippet demonstrates how you can read such a jsonl file into a list of json objects.
 
 ```python
@@ -175,7 +175,7 @@ You and your team will have the task of reading in, cleaning, and exploring this
 2. Propose a question or several questions that may be answered based on your observation of the dataset. ( 0.5 - 1 hr)
 3.
    1. Use Spark, Matplotlib, Pandas to carry out your implementation. (rest of the day)
-   2. Meanwhile writing your presentation or docs.
+   2. Meanwhile write your presentation or docs.
 
 ### Expected Final Result
 
@@ -193,7 +193,7 @@ Your final result should contain the following two parts.
 
 ### 1. Filtering Non-UTF Characters
 
-1. We suggest reading in the data into spark RDDs, not directly into Dataframes.  You can do so using the ```textFile``` command from the ```SparkContext```, and then getting python dictionaries using the ```json``` class.  If you do a ```take(1)```, it should work just fine.  If, however, you try to do a count, you'll end up throwing an error.  This happens because the ```json``` class fails when you encounter the non-utf8 characters in the dataset.  To get around this, you should wrap the json decoding in a ```try - except``` block, and return ```None``` if an exception is hit.  You can then filter out none.
+1. We suggest reading in the data into spark RDDs before converting to a DataFrame, not directly into Dataframe.  You can do so using the ```textFile``` command from the ```SparkContext```, and then getting python dictionaries using the ```json``` class.  If you do a ```take(1)```, it should work just fine.  If, however, you try to do a count, you'll end up throwing an error.  This happens because the ```json``` class fails when you encounter the non-utf8 characters in the dataset.  To get around this, you should wrap the json decoding in a ```try - except``` block, and return ```None``` if an exception is hit.  You can then filter out none.
 2. You can also try to preprocess the text file before loading into RDDS. See this StackOverflow [answer](https://stackoverflow.com/questions/26541968/delete-every-non-utf-8-symbols-from-string) and give it a try.
 
 ### 2. Tips on Working with Messy Data
