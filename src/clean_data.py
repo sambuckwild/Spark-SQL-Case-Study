@@ -46,7 +46,6 @@ def query_results_tweets(df):
     retweet_count
     FROM tweet_df LATERAL VIEW explode(entities.hashtags.text) AS hashtag
     WHERE hashtag is not null
-    LIMIT 10
     """).collect()
     return result
 
@@ -78,7 +77,7 @@ def pandas_df(df):
     return df.toPandas()
 
 '''cleans text from symbols and emojis etc'''
- def text_all_cleaned(x):
+def text_all_cleaned(x):
     x = x.lower()
     x = ' '.join([word for word in x.split(' ') if word not in stop_words])
     x = x.encode('ascii', 'ignore').decode()
