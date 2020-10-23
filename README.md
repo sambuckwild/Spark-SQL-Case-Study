@@ -40,6 +40,7 @@ It was interesting to see the locations from where the tweets were made:
 ![](images/map.png)  
 
 A few people generated most of the tweets, apparently from outside France
+
 ![](images/usercounts.png) 
 
 Most used hashtags among the 95,000 hashtags used:  
