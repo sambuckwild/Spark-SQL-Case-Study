@@ -33,12 +33,15 @@ After converting the data into specialized sql spark dataframes, we transitioned
 
 ![](images/geo_df.png)
 
-## Results & Conclusions
-It was interesting to see the locations from where the tweets were made:
+## Results & Conclusions  
+
+It was interesting to see the locations from where the tweets were made:  
+
 ![](images/map.png)  
 
 
-Most used hashtags among the 95,000 hashtags used:
+Most used hashtags among the 95,000 hashtags used:  
+
 ![](images/wordcloud.png)
 
 After looking through the most used hashtags and our dataframes, we noticed there were a lot of tweets with both 'Macron' and 'Whirlpool' as hashtags. We investigated Whirlpool and Macron: 
