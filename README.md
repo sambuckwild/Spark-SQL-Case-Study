@@ -1,24 +1,50 @@
-# Politics Makes Strange Bedfellows
-In 2017, Emmanuel Macron and Marine Le Pen were the final two candidates in the French Presidential Election.  The two candidates had drastically different approaches to governing, and as such, the election was a major topic of discussion on Twitter.
+# Twitter Conspiracy - 2017 French Presidential Election
+
+## Background
+In 2017, the French Presidential Election had to go to a second round as no candidate won the first election. Emmanuel Macron and Marine Le Pen were the final two candidates in the second round of the French Presidential Election.  The two candidates had drastically different approaches to governing, and as such, the election was a major topic of discussion on Twitter. Along with data showing that Twitter bots may have been used during the campaign in what was called the MacronLeaks disinformation campaign.  
+
 
 ## The Data
-<a href="https://s3.us-east-2.amazonaws.com/jgartner-test-data/twitter/zippedData.zip">The data</a> you are provided a line delimited json file (746 MB) of tweets from France during that time period.  Your task is to leverage your understanding of Spark, visualization, and feature engineering to explore the dataset and provide answers to some basic questions.  
+We were provided the data in a json file (746 MB) of tweets from France during the second round of election time period. <a href="https://s3.us-east-2.amazonaws.com/jgartner-test-data/twitter/zippedData.zip"> (data)</a>  
 
-# Your Task
-You and your team will have the task of reading in, cleaning, and exploring this dataset.  Your job is to gain insight into what is happening during the time period.  Your task for today is to produce the following:
+## Data Features of Interest
+Upon first inspection of the data, it was overwhelming. We looked through the dataframe schema to determine which columns would be intersting to us. We focused in on:  
+- **Geo.Coordinates**: location of user when tweet was published  
+- **Entities.Hastags**: hashtags used in tweet  
+- **Text**: text in the tweet  
+- **Language**: language of the tweet  
+- **Created At**: timestamp of the tweet
 
-1. A python script containing helper functions.
-You should be working toward transforming this large cumbersome dataset into something that is regular and easily digestible.  You need to find inconsistencies in the data, and try to think about how you would clean them.  You can do cleaning in data as they are RDDs, DataFrames, or ideally both, but the processes should be calling function that are reusable.
 
-2. A presentation about your choices.
-Later this afternoon you'll stop work and get together as a class to present your findings.  You can either choose to use slides or jupyter notebooks.  The latter might be nice, because you may want to highlight bits of code.
+## Exploratory Data Analysis
+We created several helper functions, located in the python document in the src folder, to clean the data and obtain dataframes that were easy to work with. 
+
+After converting the data into specialized sql spark dataframes, we transitioned them to pandas dataframes to easily view our data and start creating visualizations.   
+
+**Tweet Dataframe**  
+
+![](images/tweet_df.png)  
+
+**Hashtag Dataframe**  
+
+![](images/ht_df.png)  
+
+**Tweet Location Dataframe**  
+
+![](images/geo_df.png)
+
+## Results & Conclusions
+It was interesting to see the locations from where the tweets were made:
+![](images/map.png)  
 
 
-## Hints
-### 1. Non-UTF Characters
-We suggest reading in the data into spark RDDs, not directly into Dataframes.  You can do so using the ```textFile``` command from the ```SparkContext```, and then getting python dictionaries using the ```json``` class.  If you do a ```take(1)```, it should work just fine.  If, however, you try to do a count, you'll end up throwing an error.  This happens because the ```json``` class fails when you encounter the non-utf8 characters in the dataset.  To get around this, you should wrap the json decoding in a ```try - except``` block, and return ```None``` if an exception is hit.  You can then filter out none.
+Most used hashtags among the 95,000 hashtags used:
+![](images/wordcloud.png)
 
-### 2. Messy Data
-This will be the most challenging dataset you've had to work with up to this point.  The data is somewhat large, and tweets are a complicated and messy source of information. Your first steps should be to understand which fields you'll be leveraging.  Once you've read in the data, start by doing a ```take(1)``` to get a feel for what a tweet JSON string looks like.
+After looking through the most used hashtags and our dataframes, we noticed there were a lot of tweets with both 'Macron' and 'Whirlpool' as hashtags. We investigated Whirlpool and Macron: 
+- In April, Marine Le Pen visited a failing Whirlpool factory in Northern France, which upstaged Macron during the election season, gaining support from the factory workers. Macron then tried to stay even, and visited the factory to meet with angry workers. He entered the picket line and trie to explain a plan for the workers to keep their jobs.  It was a big media move for the two candidates.
+![](images/bar_chart.png)  
 
-Also note that data is messy so you'll need to do a lot of checks and filter out inconsistent data.  <b>Being able to adjust based on error messages is an important skill, consider this a chance to practice!</b>
+
+
+
